@@ -17,6 +17,13 @@ include *.yaml
 recursive-include docs *
 recursive-include shalstab *.md
 
+# Include training data and other data files
+recursive-include shalstab/training_data *
+include shalstab/training_data/*.tif
+include shalstab/training_data/*.geojson
+include shalstab/training_data/*.json
+include shalstab/training_data/*.csv
+
 # Exclude unnecessary files
 exclude .git*
 exclude .pre-commit-config.yaml
