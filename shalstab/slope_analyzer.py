@@ -433,7 +433,8 @@ class Analyzer:
         """
         Calculate flow accumulation from DEM.
 
-        Returns:            Flow accumulation as DataArray
+        Returns:
+            Flow accumulation as DataArray
         """
         grid = Grid.from_raster(str(self.dem_path))
         dem = grid.read_raster(str(self.dem_path))
@@ -444,8 +445,8 @@ class Analyzer:
         inflated_dem = grid.resolve_flats(flooded_dem)
 
         # Calculate flow direction and accumulation
-        fdir = grid.flowdir(inflated_dem)
-        accum = grid.accumulation(fdir)
+        fdir = grid.flowdir(inflated_dem, nodata_out=np.int32(self.NODATA_VALUE))
+        accum = grid.accumulation(fdir, nodata_out=np.int32(self.NODATA_VALUE))
 
         accum = xr.DataArray(accum, coords=[self.dem.coords["y"], self.dem.coords["x"]])
 
