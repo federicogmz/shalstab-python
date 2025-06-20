@@ -1,0 +1,32 @@
+# Include metadata files
+include README.md
+include LICENSE
+include CONTRIBUTING.md
+include requirements.txt
+include requirements-dev.txt
+include pyproject.toml
+
+# Include configuration files
+include *.cfg
+include *.ini
+include *.toml
+include *.yml
+include *.yaml
+
+# Include documentation
+recursive-include docs *
+recursive-include shalstab *.md
+
+# Exclude unnecessary files
+exclude .git*
+exclude .pre-commit-config.yaml
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude .coverage
+prune .git
+prune __pycache__
+prune *.egg-info
+prune build
+prune dist
