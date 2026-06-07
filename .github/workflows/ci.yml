@@ -36,8 +36,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install -e .
-          pip install pytest pytest-cov
+          pip install -e ".[test]"
       - name: Run tests
         run: pytest tests/ --cov=shalstab --cov-report=xml --cov-report=term-missing -v
       - name: Upload coverage to Codecov
