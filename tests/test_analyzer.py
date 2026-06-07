@@ -1,17 +1,19 @@
 """Comprehensive tests for the SHALSTAB Analyzer class using training data."""
-import pytest
-import numpy as np
-import xarray as xr
-import matplotlib.pyplot as plt
+
 from pathlib import Path
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pytest
+import xarray as xr
 
 import shalstab
 from shalstab import Analyzer
 
-
 # ============================================================
 # Fixtures
 # ============================================================
+
 
 @pytest.fixture(scope="module")
 def analyzer():
@@ -44,6 +46,7 @@ def failure_probability(analyzer):
 # ============================================================
 # Initialization Tests
 # ============================================================
+
 
 class TestAnalyzerInit:
     """Tests for Analyzer initialization and setup."""
@@ -93,7 +96,9 @@ class TestAnalyzerInit:
     def test_soil_thickness_computed(self, analyzer):
         """Soil thickness should be a DataArray with positive values."""
         assert isinstance(analyzer._soil_thickness, xr.DataArray)
-        valid = analyzer._soil_thickness.values[~np.isnan(analyzer._soil_thickness.values)]
+        valid = analyzer._soil_thickness.values[
+            ~np.isnan(analyzer._soil_thickness.values)
+        ]
         assert len(valid) > 0
 
     def test_geo_columns_must_be_exactly_4(self):
@@ -138,6 +143,7 @@ class TestAnalyzerInit:
 # Critical Rainfall Tests
 # ============================================================
 
+
 class TestCriticalRainfall:
     """Tests for critical rainfall calculation."""
 
@@ -171,6 +177,7 @@ class TestCriticalRainfall:
 # ============================================================
 # Stability Analysis Tests
 # ============================================================
+
 
 class TestStabilityAnalysis:
     """Tests for stability classification."""
@@ -230,6 +237,7 @@ class TestStabilityAnalysis:
 # Failure Probability Tests
 # ============================================================
 
+
 class TestFailureProbability:
     """Tests for failure probability calculation."""
 
@@ -252,6 +260,7 @@ class TestFailureProbability:
 # ============================================================
 # Soil Thickness Tests
 # ============================================================
+
 
 class TestSoilThickness:
     """Tests for Catani soil thickness model."""
@@ -277,6 +286,7 @@ class TestSoilThickness:
 # Export Tests
 # ============================================================
 
+
 class TestExport:
     """Tests for raster export functionality."""
 
@@ -291,6 +301,7 @@ class TestExport:
 # ============================================================
 # Package-Level Tests
 # ============================================================
+
 
 class TestPackage:
     """Tests for package-level attributes."""

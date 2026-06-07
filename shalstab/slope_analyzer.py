@@ -5,20 +5,21 @@ This module provides a comprehensive implementation of the SHALSTAB
 (Shallow Landsliding STABility) model for slope stability analysis.
 """
 
+from pathlib import Path
+from typing import List, Optional, Tuple, Union
+
+import geopandas as gpd
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
+import numpy as np
 import rasterio
 import rioxarray
-import numpy as np
 import xarray as xr
-import geopandas as gpd
-from pathlib import Path
-from scipy import ndimage
-from pysheds.grid import Grid
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpatches
 from geocube.api.core import make_geocube
-from typing import Optional, List, Tuple, Union
+from matplotlib.colors import BoundaryNorm, ListedColormap
 from matplotlib.ticker import FormatStrFormatter
-from matplotlib.colors import ListedColormap, BoundaryNorm
+from pysheds.grid import Grid
+from scipy import ndimage
 
 
 class Analyzer:
@@ -660,9 +661,7 @@ class Analyzer:
 
     def _plot_critical_rainfall(self, critical: xr.DataArray) -> None:
         """Plot critical rainfall results."""
-        title = (
-            "Physical modeling for landslides\n" "Critical rainfall [mm/day]\nSHALSTAB"
-        )
+        title = "Physical modeling for landslides\nCritical rainfall [mm/day]\nSHALSTAB"
 
         fig, ax = self.create_base_plot(title)
 
@@ -1004,7 +1003,7 @@ class Analyzer:
 
     def _plot_probability(self, prob: xr.DataArray) -> None:
         """Plot failure probability results."""
-        title = "Physical modeling for landslides\n" "Failure probability\nSHALSTAB"
+        title = "Physical modeling for landslides\nFailure probability\nSHALSTAB"
 
         fig, ax = self.create_base_plot(title)
 
