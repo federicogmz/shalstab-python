@@ -2,8 +2,13 @@
 
 A comprehensive Python package for slope stability analysis using the SHALSTAB (Shallow Landsliding STABility) model. This implementation provides tools for analyzing slope stability using physically-based models that consider topographic, hydrologic, and geotechnical factors.
 
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
-[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+> Developed at [SIATA](https://siata.medellin.gov.co/) — Medellín's early warning system for geohazards.
+
+[![CI](https://github.com/federicogmz/shalstab-python/actions/workflows/ci.yml/badge.svg)](https://github.com/federicogmz/shalstab-python/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/federicogmz/shalstab-python/branch/main/graph/badge.svg)](https://codecov.io/gh/federicogmz/shalstab-python)
+[![PyPI version](https://badge.fury.io/py/shalstab.svg)](https://pypi.org/project/shalstab/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
 ## Table of Contents
 
