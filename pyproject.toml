@@ -53,7 +53,6 @@ dependencies = [
 dev = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
-    "black>=22.0.0",
     "ruff>=0.4.0",
     "sphinx>=5.0.0",
     "sphinx-rtd-theme>=1.0.0",
@@ -63,7 +62,6 @@ dev = [
 all = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
-    "black>=22.0.0",
     "ruff>=0.4.0",
     "sphinx>=5.0.0",
     "sphinx-rtd-theme>=1.0.0",
@@ -72,10 +70,10 @@ all = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/federicogmz/shalstab"
-Repository = "https://github.com/federicogmz/shalstab.git"
-Documentation = "https://github.com/federicogmz/shalstab/blob/main/README.md"
-"Bug Reports" = "https://github.com/federicogmz/shalstab/issues"
+Homepage = "https://github.com/federicogmz/shalstab-python"
+Repository = "https://github.com/federicogmz/shalstab-python.git"
+Documentation = "https://github.com/federicogmz/shalstab-python/blob/main/README.md"
+"Bug Reports" = "https://github.com/federicogmz/shalstab-python/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]
