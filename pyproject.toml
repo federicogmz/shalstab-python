@@ -87,24 +87,6 @@ shalstab = ["*.md", "*.txt", "*.yml", "*.yaml", "training_data/*", "training_dat
 [tool.setuptools]
 include-package-data = true
 
-[tool.black]
-line-length = 88
-target-version = ['py38', 'py39', 'py310', 'py311']
-include = '\.pyi?$'
-extend-exclude = '''
-/(
-  # directories
-  \.eggs
-  | \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | build
-  | dist
-)/
-'''
-
 [tool.ruff]
 line-length = 88
 target-version = "py38"
