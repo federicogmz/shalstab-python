@@ -11,14 +11,13 @@ authors = [
 description = "Shallow Landsliding STABility (SHALSTAB) model for slope stability analysis"
 readme = "README.md"
 license = {text = "GPL-3.0"}
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
@@ -40,7 +39,13 @@ keywords = [
 dependencies = [
     "rasterio>=1.3.0",
     "rioxarray>=0.13.0",
-    "numpy>=1.21.0",
+    # numpy<2 es OBLIGATORIO, no una preferencia: pysheds calcula el flujo
+    # acumulado (_d8_accumulation) con np.in1d, eliminado en NumPy 2.0. Su
+    # arreglo ya está en master, pero la última release en PyPI (0.5) todavía
+    # no lo trae. Sin esta cota, `pip install shalstab` deja una instalación
+    # que revienta en cuanto se calcula la acumulación de flujo. Se podrá
+    # relajar cuando pysheds publique el arreglo.
+    "numpy>=1.21,<2",
     "xarray>=2022.6.0",
     "geopandas>=0.12.0",
     "scipy>=1.9.0",
@@ -88,7 +93,7 @@ include-package-data = true
 
 [tool.ruff]
 line-length = 88
-target-version = "py38"
+target-version = "py39"
 # ruff formatea también los bloques de código Python dentro de Markdown desde
 # 0.14. El README es documentación, no código sujeto a lint, y atar el build a
 # ese comportamiento lo tuvo en rojo durante meses sin que cambiara una sola

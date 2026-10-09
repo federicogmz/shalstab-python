@@ -34,8 +34,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      # 3.8 salió de la matriz: está EOL desde octubre de 2024 y forzaba un
+      # geopandas viejo que espera fiona.path, API que Fiona 2.x eliminó. Esa
+      # combinación fallaba en el setup de TODOS los tests.
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7
