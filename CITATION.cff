@@ -1,0 +1,64 @@
+cff-version: 1.2.0
+message: >-
+  If you use this software, please cite it using the metadata from this file.
+title: "SHALSTAB: Shallow Landsliding STABility model"
+type: software
+authors:
+  - family-names: "Gómez"
+    given-names: "Federico"
+    email: "fjgomezc@eafit.edu.co"
+    orcid: "https://orcid.org/0000-0002-8525-4354"
+    affiliation: "SIATA, Sistema de Alerta Temprana de Antioquia; Universidad EAFIT"
+version: "1.0.3"
+date-released: "2025-06-20"
+license: GPL-3.0
+repository-code: "https://github.com/federicogmz/shalstab-python"
+url: "https://pypi.org/project/shalstab/"
+abstract: >-
+  Python package implementing the SHALSTAB physically-based shallow landslide
+  stability model. It combines infinite slope stability analysis, steady-state
+  hydrology, and topographic analysis over rasters to map critical rainfall and
+  classify slope stability, including the empirical soil thickness model of
+  Catani et al. (2010). Developed for rainfall-triggered landslide assessment
+  and early warning.
+keywords:
+  - "landslides"
+  - "slope stability"
+  - "SHALSTAB"
+  - "geohazards"
+  - "geomorphology"
+  - "rainfall thresholds"
+  - "physically-based model"
+  - "GIS"
+  - "geospatial"
+references:
+  - type: article
+    title: "Terrain controls on the frequency of shallow landsliding"
+    authors:
+      - family-names: "Montgomery"
+        given-names: "D. R."
+      - family-names: "Dietrich"
+        given-names: "W. E."
+    year: 1994
+    journal: "Nature"
+    volume: "368"
+    issue: "6475"
+    start: 331
+    end: 334
+    doi: "10.1038/368331a0"
+  - type: article
+    title: "Soil thickness modelling in a data-scarce environment"
+    authors:
+      - family-names: "Catani"
+        given-names: "F."
+      - family-names: "Segoni"
+        given-names: "S."
+      - family-names: "Fanti"
+        given-names: "R."
+    year: 2010
+    journal: "Geomorphology"
+    volume: "120"
+    issue: "1-2"
+    start: 187
+    end: 194
+    doi: "10.1016/j.geomorph.2010.03.018"
