@@ -54,5 +54,7 @@ jobs:
         if: matrix.python-version == '3.11' && github.event_name == 'push'
         uses: codecov/codecov-action@v7
         with:
-          file: ./coverage.xml
+          # En v7 el input es `files` (plural); `file` quedó obsoleto y la
+          # action lo ignoraba con un warning.
+          files: ./coverage.xml
           fail_ci_if_error: false
