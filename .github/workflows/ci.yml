@@ -10,27 +10,35 @@ permissions:
   contents: read
 
 jobs:
+  # lint y test corren EN PARALELO a propósito. Antes `test` tenía `needs: lint`,
+  # así que un detalle de formato bloqueaba toda la verificación funcional: el
+  # lint falló durante meses y los tests no llegaron a ejecutarse ni una vez.
+  # El run sigue fallando si cualquiera de los dos falla, pero ahora un rojo de
+  # formato no esconde si el paquete funciona.
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
-      - run: pip install ruff
+      # Versión FIJADA. Sin el pin, `pip install ruff` traía la última versión
+      # en cada corrida y un cambio de comportamiento de ruff (0.14 empezó a
+      # formatear bloques de código Python dentro de Markdown) puso el build en
+      # rojo sin que cambiara una sola línea de código, durante meses.
+      - run: pip install "ruff==0.16.10"
       - run: ruff check .
       - run: ruff format --check .
 
   test:
     runs-on: ubuntu-latest
-    needs: lint
     strategy:
       fail-fast: false
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11"]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
@@ -41,7 +49,7 @@ jobs:
         run: pytest tests/ --cov=shalstab --cov-report=xml --cov-report=term-missing -v
       - name: Upload coverage to Codecov
         if: matrix.python-version == '3.11' && github.event_name == 'push'
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v7
         with:
           file: ./coverage.xml
           fail_ci_if_error: false
