@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+title: "SHALSTAB: Shallow Landsliding STABility model"
+type: software
+authors:
+  - family-names: "Gómez Cardona"
+    given-names: "Federico"
+    email: "fjgomezc@eafit.edu.co"
+    orcid: "https://orcid.org/0000-0002-8525-4354"
+    affiliation: "SIATA, Sistema de Alerta Temprana de Medellín y el Valle de Aburrá; Universidad EAFIT"
+version: "1.0.3"
+date-released: "2025-06-20"
+license: GPL-3.0-or-later
+repository-code: "https://github.com/federicogmz/shalstab-python"
+url: "https://pypi.org/project/shalstab/"
+abstract: >-
+  Python package implementing the SHALSTAB physically-based shallow landslide
+  stability model.
+keywords:
+  - "landslides"
+  - "slope stability"
+  - "SHALSTAB"
+  - "geohazards"
