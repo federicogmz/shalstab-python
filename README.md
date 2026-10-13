@@ -7,6 +7,7 @@ A comprehensive Python package for slope stability analysis using the SHALSTAB (
 [![CI](https://github.com/federicogmz/shalstab-python/actions/workflows/ci.yml/badge.svg)](https://github.com/federicogmz/shalstab-python/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/federicogmz/shalstab-python/branch/main/graph/badge.svg)](https://codecov.io/gh/federicogmz/shalstab-python)
 [![PyPI version](https://badge.fury.io/py/shalstab.svg)](https://pypi.org/project/shalstab/)
+[![MCP Enabled](https://img.shields.io/badge/MCP-Enabled-blueviolet)](https://modelcontextprotocol.io)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 
@@ -14,6 +15,7 @@ A comprehensive Python package for slope stability analysis using the SHALSTAB (
 
 - [Overview](#overview)
 - [Installation](#installation)
+- [Model Context Protocol (MCP) Integration](#model-context-protocol-mcp-integration)
 - [Quick Start](#quick-start)
 - [Scientific Background](#scientific-background)
 - [Mathematical Framework](#mathematical-framework)
@@ -61,6 +63,76 @@ pip install -e .
 ```bash
 pip install -r requirements.txt
 ```
+
+## Model Context Protocol (MCP) Integration
+
+> **Note:** MCP support is included in the development branch (`v1.1.0.dev0`). For local development, install with `pip install -e ".[mcp]"`.
+
+`shalstab` natively supports the [Model Context Protocol (MCP)](https://modelcontextprotocol.io), allowing frontier AI agents (Claude Desktop, Claude Code, OpenAI Agents SDK) to execute deterministic slope stability physics directly from natural language. Note: MCP features require Python $\ge 3.10$.
+
+### Quickstart with Claude Desktop
+
+Add this to your `claude_desktop_config.json`:
+
+**Directly from GitHub (Recommended):**
+```json
+{
+  "mcpServers": {
+    "shalstab": {
+      "command": "uvx",
+      "args": [
+        "--python", "3.11",
+        "--from", "shalstab[mcp] @ git+https://github.com/federicogmz/shalstab-python.git",
+        "shalstab-mcp"
+      ]
+    }
+  }
+}
+```
+
+**From local repository checkout:**
+```json
+{
+  "mcpServers": {
+    "shalstab": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--python", "3.11",
+        "--directory", "/path/to/shalstab-python",
+        "--extra", "mcp",
+        "shalstab-mcp"
+      ]
+    }
+  }
+}
+```
+
+### Quickstart with OpenAI Agents SDK
+
+*(Ensure `shalstab-mcp` is installed via `pip install -e ".[mcp]"` or from git `pip install "shalstab[mcp] @ git+https://github.com/federicogmz/shalstab-python.git"`, or run with `uvx`)*:
+
+```python
+import asyncio
+from agents import Agent, Runner
+from agents.mcp import MCPServerStdio
+
+async def main():
+    # Connect to the local SHALSTAB MCP server via standard I/O (requires Python >= 3.10)
+    async with MCPServerStdio(params={"command": "shalstab-mcp"}) as server:
+        agent = Agent(name="GeohazardsAgent", mcp_servers=[server])
+        result = await Runner.run(
+            agent, "Evaluate slope stability for a 35 degree slope with 2 kPa cohesion and 32 degree friction angle"
+        )
+        print(result.final_output)
+
+asyncio.run(main())
+```
+
+### Exposed Agent Tools
+- `compute_infinite_slope_stability`: Analytical Factor of Safety (FS) and 4-class stability classification under dry, steady-state, and fully saturated regimes.
+- `diagnose_topographic_wetness`: Steady-state hydrologic saturation and critical recharge threshold $\log_{10}(q/T)$ (and natural $\ln(q/T)$) for shallow failure per Montgomery & Dietrich (1994).
+  *Note on formulation:* Analytical critical recharge strictly implements Montgomery & Dietrich (1994) Eq. 5, matching `Analyzer.calculate_log_qt`.
 
 ## Training data
 
