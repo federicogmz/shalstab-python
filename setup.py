@@ -35,7 +35,7 @@ dev_requirements = [
 
 setup(
     name="shalstab",
-    version="1.0.0",
+    version="1.1.0.dev0",
     author="Federico Gómez",
     author_email="fjgomezc@eafit.edu.co",
     description="Shallow Landsliding STABility (SHALSTAB) model for slope stability analysis",
